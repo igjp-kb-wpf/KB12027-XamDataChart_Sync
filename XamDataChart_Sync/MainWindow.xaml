@@ -1,0 +1,52 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XamDataChart_Sync"
+        xmlns:ig="http://schemas.infragistics.com/xaml" x:Class="XamDataChart_Sync.MainWindow"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <ig:XamDataChart x:Name="DataChart1" Grid.Column="0"
+			HorizontalZoomable="True" VerticalZoomable="True" HorizontalViewScrollbarMode="Persistent" VerticalViewScrollbarMode="Persistent">
+            <ig:SyncManager.SyncSettings>
+                <ig:SyncSettings SyncChannel="syncGroup1" SynchronizeHorizontally="True" SynchronizeVertically="True"/>
+            </ig:SyncManager.SyncSettings>
+            <ig:XamDataChart.Axes>
+                <ig:CategoryXAxis x:Name="xAxis" ItemsSource="{Binding}" Label="{}{Country}" />
+                <ig:NumericYAxis  x:Name="yAxis" />
+            </ig:XamDataChart.Axes>
+            <ig:XamDataChart.Series>
+                <ig:AreaSeries ItemsSource="{Binding}"
+                  ValueMemberPath="Coal"
+                  XAxis="{Binding ElementName=xAxis}"
+                  YAxis="{Binding ElementName=yAxis}">
+                </ig:AreaSeries>
+            </ig:XamDataChart.Series>
+        </ig:XamDataChart>
+        <ig:XamDataChart x:Name="DataChart2"  Grid.Column="1"
+                        HorizontalZoomable="True" VerticalZoomable="True" HorizontalViewScrollbarMode="Persistent" VerticalViewScrollbarMode="Persistent">
+            <ig:SyncManager.SyncSettings>
+                <ig:SyncSettings SyncChannel="syncGroup1" SynchronizeHorizontally="True" SynchronizeVertically="True"/>
+            </ig:SyncManager.SyncSettings>
+            <ig:XamDataChart.Axes>
+                <ig:CategoryXAxis x:Name="xAxis1" ItemsSource="{Binding}" Label="{}{Country}" />
+                <ig:NumericYAxis  x:Name="yAxis1" />
+            </ig:XamDataChart.Axes>
+            <ig:XamDataChart.Series>
+                <ig:AreaSeries ItemsSource="{Binding}"
+                  ValueMemberPath="Coal"
+                  XAxis="{Binding ElementName=xAxis1}"
+                  YAxis="{Binding ElementName=yAxis1}">
+                </ig:AreaSeries>
+            </ig:XamDataChart.Series>
+        </ig:XamDataChart>
+
+    </Grid>
+</Window>
